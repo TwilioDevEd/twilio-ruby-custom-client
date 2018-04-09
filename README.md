@@ -1,6 +1,6 @@
 # Custom HTTP Clients for the Twilio Ruby Helper Library
 
-Use the twilio-ruby helper library with a proxy server
+Use the twilio-ruby helper library with a proxy server.
 
 ## Usage
 
