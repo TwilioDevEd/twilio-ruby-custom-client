@@ -3,44 +3,26 @@ require 'rubygems'
 require 'twilio-ruby'
 require 'dotenv/load'
 
+# Custom HTTP Client
+require_relative 'MyRequestClass'
+
 # Your Account Sid and Auth Token from twilio.com/console
 account_sid = ENV['ACCOUNT_SID']
 auth_token = ENV['AUTH_TOKEN']
+proxy_address = ENV['PROXY_ADDRESS']
+proxy_protocol = ENV['PROXY_PROTOCOL']
+proxy_port = ENV['PROXY_PORT']
 
-# Custom HTTP Client
-class MyRequestClass
-  def initialize()
-    @http = Twilio::HTTP::Client.new
-  end
-
-  def request(host, port, method, url, params = {}, data = {}, headers = {}, auth = nil, timeout = nil)
-    # Here you can change the URL, headers and other request parameters
-    # In this case, the request reads env variables HTTP_PROXY
-    # and HTTPS_PROXY to use a corporate proxy
-    @http.request(
-          host,
-          port,
-          method,
-          url,
-          params,
-          data,
-          headers,
-          auth,
-          timeout
-        )
-  end  
-end  
-
-my_request_client = MyRequestClass.new
+my_request_client = MyRequestClass.new(proxy_protocol, proxy_address, proxy_port)
 
 @client = Twilio::REST::Client.new(account_sid, auth_token, 
                                     nil, nil, my_request_client)
 
 message = @client.messages
   .create(
-     to: '+15558675310',
-     body: 'Hey there!',
-     from: '+15017122661'
+    to: '+593978613041',
+    body: 'RB This is the ship that made the Kesssssel Run in fourteen parsecs?',
+    from: '+13212855389',
    )
 
 puts "Message SID: #{message.sid}"
