@@ -3,4 +3,4 @@
 source "https://rubygems.org"
 
 gem 'dotenv'
-gem 'twilio-ruby', '~> 5.7.2'
+gem 'twilio-ruby', '~> 6.3.0'
